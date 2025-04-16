@@ -1,9 +1,12 @@
 package api.utilities;
 
+import org.testng.annotations.DataProvider;
+
 import java.io.IOException;
 
 public class DataProviders {
 
+    @DataProvider(name="Data")
     public String[][] getAllData() throws IOException {
         String path=System.getProperty("user.dir")+"//testData//userData.xlsx";
         XLUtility xl=new XLUtility(path);
@@ -21,6 +24,7 @@ public class DataProviders {
         return apidata;
     }
 
+    @DataProvider(name="UserNames")
     public String[] getUserNames() throws IOException {
         String path=System.getProperty("user.dir")+"//testData//userData.xlsx";
         XLUtility xl=new XLUtility(path);
