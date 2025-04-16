@@ -9,7 +9,7 @@ import lombok.Setter;
 public class User {
 
     int id;
-    String userName;
+    String username;
     String firstName;
     String lastName;
     String email;

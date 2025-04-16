@@ -18,28 +18,28 @@ public class UserEndpoints {
         return response;
     }
 
-    public static Response getUser(String userName){
+    public static Response getUser(String username){
         Response response = given()
-                .pathParam("username", userName)
+                .pathParam("username", username)
          .when()
                 .get(Routes.get_url);
         return response;
     }
 
-    public static Response updateUser(String userName, User payload){
+    public static Response updateUser(String username, User payload){
         Response response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .pathParam("username", userName)
+                .pathParam("username", username)
                 .body(payload)
           .when()
                 .put(Routes.update_url);
         return response;
     }
 
-    public static Response deleteUser(String userName){
+    public static Response deleteUser(String username){
         Response response = given()
-                .pathParam("username", userName)
+                .pathParam("username", username)
          .when()
                 .delete(Routes.delete_url);
         return response;
