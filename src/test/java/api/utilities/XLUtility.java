@@ -1,12 +1,14 @@
 package api.utilities;
 
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
+import java.util.zip.DataFormatException;
 
 public class XLUtility {
 
@@ -42,6 +44,25 @@ public class XLUtility {
         workbook.close();
         fi.close();
         return cellcount;
+    }
+
+    public String getCellData(String sheetName, int rownum, int column) throws IOException {
+        fi=new FileInputStream(path);
+        workbook=new XSSFWorkbook(fi);
+        sheet=workbook.getSheet(sheetName);
+        row=sheet.getRow(rownum);
+        cell=row.getCell(column);
+
+        DataFormatter formatter = new DataFormatter();
+        String data;
+        try{
+            data=formatter.formatCellValue(cell); //Returns the formatted value of a cell as string
+        } catch(Exception e){
+            data=" ";
+        }
+        workbook.close();
+        fi.close();
+        return data;
     }
 
     public void setCellData(String sheetName, int rownum, int colnum, String data) throws IOException {
